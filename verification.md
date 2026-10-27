@@ -8,4 +8,14 @@ That live check used the published Python client with an owner Bearer authentica
 
 On 2026-10-24 Glama displayed the AWS connector as Healthy, with 9 tools and TDQS A (3.9/5). This establishes catalog discovery and protocol inspection, not continuous GPU availability.
 
-The three README recipes have not each been run as new GPU jobs during this publication step. No synthetic adoption, fabricated testimonials or invented image/audio timings are included. Python syntax and CLI help are checked locally before distributing this kit.
+The original three chat/image/audio README recipes were not each run as new GPU jobs during the 0.8.0 publication step. No synthetic adoption, fabricated testimonials or invented image/audio timings are included. Python syntax and CLI help are checked locally before distributing this kit.
+
+
+## Approved local tools: 27 October 2026
+
+Two owner-authenticated MCP jobs completed on the live RTX 5080 worker. They are internal synthetic checks, not external adoption or a comprehensive benchmark.
+
+- Decimal/VAT task: 17 x 23.40 + 38 = 435.80; 22% VAT = 95.88; total = 531.68. Delivered totals.csv with these values. Server total: 20.036 seconds.
+- Grouped CSV task: Alpha 120.50 + 79.50 = 200.00; Beta 90 + 10 = 100.00. Delivered suppliers.csv. Server total: 17.023 seconds.
+
+Elapsed server times include queue and model loading. These are two observations, not a latency guarantee. The model used GPU inference, and predefined tools used local CPU/RAM. No VM or cloud code execution was used. Backend quote matching is not independent factual or arithmetic verification.
