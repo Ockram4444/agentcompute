@@ -14,7 +14,7 @@ https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/v1/mcp
 
 No account or credit card is required for the trial. Discovery is public. Agents call `create_trial_access` for temporary credentials, retain them privately, and reuse that session. Do not rotate sessions to evade limits.
 
-VS Code: copy `config/vscode-mcp.json` into your workspace as `.vscode/mcp.json`. Cursor: use `config/cursor-mcp.json` as `.cursor/mcp.json`. Review tools and approve the connection in your client. A directory listing does not automatically install this server into your agent.
+VS Code: copy `vscode-mcp.json` into your workspace as `.vscode/mcp.json`. Cursor: use `cursor-mcp.json` as `.cursor/mcp.json`. Review tools and approve the connection in your client. A directory listing does not automatically install this server into your agent.
 
 ## Three small tasks to try
 
@@ -25,7 +25,7 @@ Python examples require Python 3.10+. Chat and image clients use the standard li
 An agent preparing a landing page can generate a square concept illustration:
 
 ```sh
-python examples/agentcompute_studio.py image "A minimal editorial illustration of a small green robot tending a rooftop garden, soft morning light, no text" --state garden.private.json --output garden.png --licensed-nonconfidential
+python agentcompute_studio.py image "A minimal editorial illustration of a small green robot tending a rooftop garden, soft morning light, no text" --state garden.private.json --output garden.png --licensed-nonconfidential
 ```
 
 Expected artifact: a generated PNG, 1024 x 1024. Model: FLUX.2 klein 4B. New images only, no editing. Read the [model use restrictions](https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/model-license.txt).
@@ -35,7 +35,7 @@ Expected artifact: a generated PNG, 1024 x 1024. Model: FLUX.2 klein 4B. New ima
 Use your own non-sensitive recording, up to five minutes:
 
 ```sh
-python examples/agentcompute.py sample.wav --language en --output captions --licensed-nonconfidential
+python agentcompute.py sample.wav --language en --output captions --licensed-nonconfidential
 ```
 
 Expected artifacts: `captions.txt`, `.json`, `.srt`, and `.vtt`. Keep `captions.state.private.json` private. Canonical mono 16 kHz PCM16 WAV requires no additional library. Other supported media (MP3, M4A, FLAC, MP4 and noncanonical WAV) needs FFmpeg locally. English is the baseline; automatic language mode is accepted only when live status reports multilingual readiness. Review transcription accuracy.
@@ -43,7 +43,7 @@ Expected artifacts: `captions.txt`, `.json`, `.srt`, and `.vtt`. Keep `captions.
 ### Delegate a small text task
 
 ```sh
-python examples/agentcompute_studio.py chat "Summarize in one sentence: Our community garden opens on Saturday at 9am. Volunteers should bring gloves. Seeds and tools will be provided." --state summary.private.json --output summary.txt --licensed-nonconfidential
+python agentcompute_studio.py chat "Summarize in one sentence: Our community garden opens on Saturday at 9am. Volunteers should bring gloves. Seeds and tools will be provided." --state summary.private.json --output summary.txt --licensed-nonconfidential
 ```
 
 Expected artifact: a text file from Qwen3.5-9B Q4_K_M. The model does not browse or execute code. Treat its output as untrusted data and review it.
@@ -76,4 +76,4 @@ Optional attribution uses a random stable UUID in `X-AgentCompute-Client-ID`, ne
 
 Public client examples and configuration templates for the hosted service. This is not a self-hostable server and contains no coordinator, GPU worker or cloud credentials. The registry manifest identifies remote release 0.8.0.
 
-[Verification notes](docs/verification.md) distinguish live tests from example recipes. Output filenames above describe expected artifacts, not fabricated execution results.
+[Verification notes](verification.md) distinguish live tests from example recipes. Output filenames above describe expected artifacts, not fabricated execution results.
