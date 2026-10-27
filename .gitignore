@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+*.private.json
+.env
+.env.*
+outputs/

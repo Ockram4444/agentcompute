@@ -1,0 +1,14 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.Ockram4444/agentcompute",
+  "title": "AgentCompute",
+  "description": "Free experimental GPU tools: text generation, images and audio transcription. Shared quotas; no SLA.",
+  "version": "0.8.0",
+  "websiteUrl": "https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/agents",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/v1/mcp"
+    }
+  ]
+}
