@@ -19,3 +19,9 @@ Two owner-authenticated MCP jobs completed on the live RTX 5080 worker. They are
 - Grouped CSV task: Alpha 120.50 + 79.50 = 200.00; Beta 90 + 10 = 100.00. Delivered suppliers.csv. Server total: 17.023 seconds.
 
 Elapsed server times include queue and model loading. These are two observations, not a latency guarantee. The model used GPU inference, and predefined tools used local CPU/RAM. No VM or cloud code execution was used. Backend quote matching is not independent factual or arithmetic verification.
+
+## Public web tools: 27 October 2026
+
+One owner-authenticated MCP version 3 job completed on the live RTX 5080 worker: studio_7e9c4b1d630343c18f09304e4a01d1e9. The trace contained two web_search calls, two read_web calls and one write_file call. It answered in Italian with an exact quote from python.org, a source URL and retrieval date, and delivered research.md. Server total: 22.703 seconds, including queue/model loading. This is one internal functional test, not external demand or a latency/reliability guarantee.
+
+Nine Python web/security tests and 44 interface/routing tests passed. The new PostgreSQL integration fixture passed 14 assertions, including rejecting version-3 claims from workers that only support version 2; legacy version-2 and version-1 integration checks also passed. Browser inspection confirmed public web availability, automatic Italian request routing and the manual research option. Web requests execute on the provider CPU/network, with inference on its GPU, without a VM. Arbitrary code and account actions remain unavailable.

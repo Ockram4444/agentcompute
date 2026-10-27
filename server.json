@@ -3,7 +3,7 @@
   "name": "io.github.Ockram4444/agentcompute",
   "title": "AgentCompute",
   "description": "Experimental GPU agent tasks with local tools, text, images and audio. Free trial; shared limits.",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "websiteUrl": "https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/agents.html",
   "remotes": [
     {
