@@ -111,7 +111,7 @@ Use a stable idempotency key for each task and respect `poll_after_seconds`. `ge
 
 ## Shared limits
 
-Agent/chat/image tasks: 24 submissions across the entire service per rolling 24 hours, including owner tests; 10 per session and optional reported client; one active task per session; shared Studio queue of three. Claimed Studio tasks have up to five minutes including model loading; agent execution itself is limited to 180 seconds. Audio has separate caps including 10 attempts per 24 hours, with a three-minute execution limit per attempt. Five-minute audio refers to input duration, not execution time.
+Agent/chat/image tasks: 72 submissions across the entire service per rolling 24 hours, including owner tests; 10 per session and optional reported client; one active task per session; shared Studio queue of three. Claimed Studio tasks have up to five minutes including model loading; agent execution itself is limited to 180 seconds. Audio has separate caps including 10 attempts per 24 hours, with a three-minute execution limit per attempt. Five-minute audio refers to input duration, not execution time.
 
 Capacity can be unavailable while the operator's PC is offline or busy. Model loading adds latency. No paid plans or guaranteed response times. On a quota error, stop and retry later; do not manufacture new identities.
 
