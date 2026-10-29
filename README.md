@@ -109,6 +109,12 @@ If interrupted, rerun the **same command and state/output path** to resume the s
 
 Use a stable idempotency key for each task and respect `poll_after_seconds`. `get_compute_*` refers to audio; `get_studio_*` refers to agent tasks, chat and images. [Full protocol](https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/llms.txt).
 
+## Session recovery
+
+Trial credentials last 24 hours. Studio automatically renews the same session if it expired within the previous seven days. Ownership, rolling quotas and idempotency keys are preserved; recovery does not create a replacement session or extend task-content retention. Revoked or unknown credentials cannot be renewed.
+
+HTTP clients can POST `{}` to `/v1/trial/renew` with the existing Bearer token. A successful response has `same_session: true` and `expires_at`; continue using the same token and original request/job ID. MCP-only and supplied Python clients do not automatically perform this HTTP recovery.
+
 ## Shared limits
 
 Agent/chat/image tasks: 72 submissions across the entire service per rolling 24 hours, including owner tests; 10 per session and optional reported client; one active task per session; shared Studio queue of three. Claimed Studio tasks have up to five minutes including model loading; agent execution itself is limited to 180 seconds. Audio has separate caps including 10 attempts per 24 hours, with a three-minute execution limit per attempt. Five-minute audio refers to input duration, not execution time.

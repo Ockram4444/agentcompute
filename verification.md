@@ -35,3 +35,9 @@ The corrected local GPU test completed in 19.438 seconds with two searches, two 
 ## Shared capacity: 28 October 2026
 
 At the owner's request, the shared rolling 24-hour Studio submission cap increased from 24 to 72. The 10-per-session/reported-client limit, one active task per session and shared queue of three remain unchanged. Isolated PostgreSQL quota tests passed 47 assertions, including acceptance of submission 72 and rejection at the full cap.
+
+## Session recovery: 29 October 2026
+
+The correction renews expired trial access under the same credential and principal, with a seven-day recovery window after expiry. It rejects unknown, revoked, too-old and non-trial credentials. The Studio retries an authentication failure once, preserving the original payload and idempotency key; concurrent history requests share one recovery call.
+
+Isolated PostgreSQL recovery tests passed 29 assertions, including ownership isolation, quota preservation and idempotent recovery. The existing quota suite passed 47 assertions. All 15 UI tests passed, including expired submissions, existing-job polling and bounded retries. These tests used fixtures, not new GPU jobs or external adoption.
