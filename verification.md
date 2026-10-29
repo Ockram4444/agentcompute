@@ -41,3 +41,9 @@ At the owner's request, the shared rolling 24-hour Studio submission cap increas
 The correction renews expired trial access under the same credential and principal, with a seven-day recovery window after expiry. It rejects unknown, revoked, too-old and non-trial credentials. The Studio retries an authentication failure once, preserving the original payload and idempotency key; concurrent history requests share one recovery call.
 
 Isolated PostgreSQL recovery tests passed 29 assertions, including ownership isolation, quota preservation and idempotent recovery. The existing quota suite passed 47 assertions. All 15 UI tests passed, including expired submissions, existing-job polling and bounded retries. These tests used fixtures, not new GPU jobs or external adoption.
+
+## Implicit web routing: 29 October 2026
+
+Studio now routes common implicit live-information requests, including weather, to the version 3 agent in Automatic mode, and retains web routing for common follow-ups. Research objectives include the request's UTC timestamp and source-verification instructions. Explicit Text reply remains text-only. All 48 routing tests passed, including the reported mixed capabilities/Shanghai weather request.
+
+The live owner test studio_7903c586f55c479a8bce17d32b588f85 failed validation after 13.381 seconds because the model did not supply the required citation. A subsequent local GPU reproduction made web searches but received irrelevant or general results, and a page read exceeded the download limit. It returned an explicit inability to verify the forecast, not a weather prediction. This verifies web invocation, not useful weather retrieval or reliable general research. Search relevance and graceful handling of unavailable evidence remain limitations.
