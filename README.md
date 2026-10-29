@@ -60,9 +60,9 @@ For MCP, require `services.agent_web=true` and call `submit_agent_job` with `age
 }
 ```
 
-The agent can search Bing and read public HTTPS pages as text, then combine evidence with calculations and file creation. The same eight-call budget applies. Search results are discovery hints; read pages for evidence. Outputs contain source URLs, retrieval timestamps and truncation indicators. Website access and search quality vary.
+The agent can search Bing (or Brave Search API when a provider configures a key), read public HTTPS pages as text, and retrieve MET Norway weather forecasts, then combine evidence with calculations and file creation. The same eight-call budget applies. Search results are discovery hints; read pages for evidence. Outputs contain source URLs, retrieval timestamps and truncation indicators. Website access and search quality vary. Obviously unrelated results are filtered; this is not semantic verification. When retrieval yields no usable evidence, the agent reports the limitation without a factual answer. General search remains experimental; no Brave key is configured in the pilot. Weather uses approximate city-centre coordinates and a supplied UTC offset; temperature ranges summarize available forecast samples. Forecasts are attributed to MET Norway under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), grouped and summarized by AgentCompute.
 
-Search queries go to Bing, domain lookups to Google DNS, and page requests originate on the provider PC. Use only nonconfidential public material. Web content is untrusted; review the output. There is no JavaScript browser, login, email sending, booking, arbitrary code or access to personal host files. Conversation context is supplied by Studio; persistent personal memory is not implemented.
+Search queries go to the configured search provider, weather coordinates go to MET Norway, domain lookups go to Google DNS, and page requests originate on the provider PC. Use only nonconfidential public material. Web content is untrusted; review the output. There is no JavaScript browser, login, email sending, booking, arbitrary code or access to personal host files. Conversation context is supplied by Studio; persistent personal memory is not implemented.
 
 ## Other tasks to try
 

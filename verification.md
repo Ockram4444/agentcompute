@@ -47,3 +47,18 @@ Isolated PostgreSQL recovery tests passed 29 assertions, including ownership iso
 Studio now routes common implicit live-information requests, including weather, to the version 3 agent in Automatic mode, and retains web routing for common follow-ups. Research objectives include the request's UTC timestamp and source-verification instructions. Explicit Text reply remains text-only. All 48 routing tests passed, including the reported mixed capabilities/Shanghai weather request.
 
 The live owner test studio_7903c586f55c479a8bce17d32b588f85 failed validation after 13.381 seconds because the model did not supply the required citation. A subsequent local GPU reproduction made web searches but received irrelevant or general results, and a page read exceeded the download limit. It returned an explicit inability to verify the forecast, not a weather prediction. This verifies web invocation, not useful weather retrieval or reliable general research. Search relevance and graceful handling of unavailable evidence remain limitations.
+
+## Weather and evidence handling: 29 October 2026
+
+Added a predefined MET Norway forecast tool for version 3, verified HTTPS using available certifi roots, public-page truncation support, filtering of obviously unrelated search results, and an explicit no-evidence response. Conversation context and search snippets are not treated as retrieved factual evidence by the worker. Verbatim quotation checks remain enabled. The coordinator now accepts the weather tool output and a narrowly defined unavailable-evidence response without citations.
+
+Validation: 23 Python tests; 19 PostgreSQL integration assertions for weather acceptance, unsupported uncited-answer rejection and unavailable-evidence handling; the existing web and local-tool suites each passed 14 assertions. These used fixtures. Deployment completed successfully; the published provider archive and two updated public pages matched their prepared bytes.
+
+Two owner-authenticated live MCP tests then succeeded on the RTX 5080 worker:
+
+- studio_c4d8623381894bc594a69fbe4e72d018: the reported mixed capabilities/Shanghai weather request invoked get_weather and returned a forecast for the following local date, with an exact source citation, MET Norway URL and CC BY 4.0 attribution. Server total 20.407 seconds, including queue/model loading. One citation-repair turn was required.
+- studio_2856984fbef5492898bc32872c031df5: reading the supplied official Python tutorial URL invoked read_web and returned an explanation with matching source evidence. Server total 4.543 seconds. This was a direct-URL test, not a general search benchmark.
+
+The first live attempt with the new tool failed because the coordinator's tool-output allowlist had not yet included get_weather; that was corrected before the successful tests above. These are internal functional checks, not external adoption, proof of cost savings or a broad reliability guarantee. The combined weather request prioritized the forecast; it did not produce a full capability overview.
+
+General discovery still uses Bing RSS and can return poor or empty results. An optional Brave Search API adapter is implemented and mock-tested, but no API key is configured and it has not been live-tested. Forecasts use approximate city-centre coordinates and a model-supplied UTC offset; daily ranges summarize forecast samples, not certified extremes. Sources can remain unavailable.
