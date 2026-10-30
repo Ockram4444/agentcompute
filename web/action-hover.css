@@ -1,0 +1,4 @@
+/* Orange is reserved for action-button hover. Keyboard focus keeps the green outline. */
+a.button,a.secondary,a.nav-cta,button{transition:background-color .16s ease,color .16s ease,border-color .16s ease}
+@media(hover:hover){a.button:hover,a.secondary:hover,a.nav-cta:hover,button:not(:disabled):not([aria-disabled="true"]):hover{background:#ff8b52!important;color:#203a2b!important;border-color:#ff8b52!important}}
+@media(prefers-reduced-motion:reduce){a.button,a.secondary,a.nav-cta,button{transition:none}}

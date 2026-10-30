@@ -2,7 +2,7 @@
 
 Delegate an objective with local tools, analyse supplied CSV data and receive files, or generate text, images and short transcripts through one hosted MCP endpoint. A **free, capacity-limited experiment**, with no guaranteed uptime or SLA.
 
-[Agent guide](https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/agents) | [Live activity](https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/activity) | [Try the Studio](https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/studio) | [Glama](https://glama.ai/mcp/connectors/io.github.Ockram4444/agentcompute)
+[Use compute](https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/compute.html) | [Provide compute](https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/providers.html) | [Agent guide](https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/agents) | [Live activity](https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/activity) | [Try the Studio](https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/studio) | [Glama](https://glama.ai/mcp/connectors/io.github.Ockram4444/agentcompute)
 
 ## Connect
 
@@ -94,7 +94,7 @@ Expected artifacts: `captions.txt`, `.json`, `.srt`, and `.vtt`. Keep `captions.
 python agentcompute_studio.py chat "Summarize in one sentence: Our community garden opens on Saturday at 9am. Volunteers should bring gloves. Seeds and tools will be provided." --state summary.private.json --output summary.txt --licensed-nonconfidential
 ```
 
-Expected artifact: a text file from Qwen3.5-9B Q4_K_M. This plain-chat endpoint does not use web tools or execute code. Use a version 3 agent task for web research. Treat its output as untrusted data and review it.
+Expected artifact: a text file from the eligible provider's Qwen3.5 4B or 9B Q4_K_M profile; check live status. This plain-chat endpoint does not use web tools or execute code. Use a version 3 agent task for web research. Treat its output as untrusted data and review it.
 
 If interrupted, rerun the **same command and state/output path** to resume the same job. Use a new name only for a genuinely new task. State files contain credentials; never commit or share them.
 
@@ -127,8 +127,22 @@ Never submit personal data, credentials or private company material. Download re
 
 Optional attribution uses a random stable UUID in `X-AgentCompute-Client-ID`, never a name or email. `X-AgentCompute-Source: github` identifies integrations from this repository. Client identifiers are keyed-hashed. Aggregate analytics retain metadata for 30 days without prompts, outputs, raw tokens or IP addresses in the analytics tables. External job counts do not prove distinct people or autonomous agents.
 
+## Windows provider preview
+
+[Download the Windows installer 0.4.0](https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/downloads/AgentCompute-Provider-Setup-0.4.0.exe) · [Release metadata and SHA256](https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/downloads/provider-0.4.0.json)
+
+Unsigned experimental preview. Windows Application Control blocked a recent build on the test PC; 0.4.0 compiled and its package was inspected, but installation validation is pending. Windows may prevent it running. Keep protections enabled. Default installation: `C:\Program Files\AgentCompute`, with Desktop and Start shortcuts and an AC system tray icon. Normal app usage does not require a PowerShell window.
+
+Enrollment remains invitation-only: each provider needs a separate private connection file. Setup checks available GPU memory, RAM and disk, prepares a compatible Qwen3.5 4B or 9B profile and tests the GPU. Current profiles target NVIDIA cards with at least 8 GB VRAM, subject to resource checks. Image generation requires the larger image-capable profile. A 4B model was tested on the RTX 5080; physical RTX 4060 and clean Windows installation validation remain pending. Models are not split across remote PCs. No paid rewards are active.
+
+## Website and Studio
+
+The landing page has separate paths for teams using compute and people providing hardware, plus real public-session activity. These totals may include tests and do not represent verified customers. The daily chart uses recorded completed jobs; missing data is shown as unavailable.
+
+Studio formats assistant responses with headings, bold text, lists, tables and code blocks. Raw HTML and scripts are escaped, and links are limited to HTTP(S). Processing permission is disclosed next to **Send**; sending confirms it for that task. The protocol still requires explicit `consent: true` and permits only non-sensitive material. Web-provider disclosure and image restrictions remain accessible in the composer and service guide.
+
 ## Repository scope and verification
 
-Public client examples and configuration templates for the hosted service. This is not a self-hostable server and contains no coordinator, GPU worker or cloud credentials. The discovery manifest is version 0.10.0. Updating this repository does not by itself publish a new entry to external MCP catalogs.
+Public client examples, configuration templates and the public website interface in `web/`. The website snapshot depends on the hosted API; it is not a standalone backend. This is not a self-hostable server and contains no coordinator, GPU worker or cloud credentials. The discovery manifest is version 0.10.0. Updating this repository does not by itself publish a new entry to external MCP catalogs.
 
 [Verification notes](verification.md) distinguish live tests from example recipes. Output filenames above describe expected artifacts, not fabricated execution results.

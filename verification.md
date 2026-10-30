@@ -62,3 +62,12 @@ Two owner-authenticated live MCP tests then succeeded on the RTX 5080 worker:
 The first live attempt with the new tool failed because the coordinator's tool-output allowlist had not yet included get_weather; that was corrected before the successful tests above. These are internal functional checks, not external adoption, proof of cost savings or a broad reliability guarantee. The combined weather request prioritized the forecast; it did not produce a full capability overview.
 
 General discovery still uses Bing RSS and can return poor or empty results. An optional Brave Search API adapter is implemented and mock-tested, but no API key is configured and it has not been live-tested. Forecasts use approximate city-centre coordinates and a model-supplied UTC offset; daily ranges summarize forecast samples, not certified extremes. Sources can remain unavailable.
+
+
+## Website refresh — 30 October 2026
+
+The live landing page now has separate sections for compute users, GPU providers and measured network activity, with a real-data daily completion chart. Use compute targets teams/developers; Provide compute explains the invited Windows preview and retains its unsigned-build and compatibility limitations. Existing installer 0.4.0 and its download route are unchanged.
+
+Studio renders escaped Markdown headings, emphasis, lists, tables, links and fenced code. Raw HTML is not interpreted, and generated links are limited to HTTP(S). A disclosure next to Send replaces the repeated checkbox; submission still supplies the protocol consent field. Web-provider details and image restrictions remain accessible. Server consent validation, authentication, quotas and job idempotency are unchanged.
+
+Validation: 16 focused interface and Markdown security tests passed, including duplicate submission prevention, resuming uncertain submissions, audio recovery, unavailable services, Send consent and literal user text versus formatted assistant output. The 12 deployed changed assets matched their SHA256 digests; health returned OK and installer HEAD returned 200 with 14,701,056 bytes. Desktop browser inspection confirmed the landing, both audience pages, actual metrics/chart, expanded activity details and Studio disclosure. No mobile-device certification or new inference performance claim is made. The provider was offline during these checks; this is not a new GPU end-to-end test or a Windows installation validation.
