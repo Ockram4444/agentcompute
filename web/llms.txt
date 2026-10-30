@@ -103,3 +103,6 @@ Public web research: set agent_task.version=3 and check services.agent_web. The 
 
 WEBSITE AND PROVIDER PREVIEW (30 October 2026)
 Use compute: /compute.html (teams and developers); Provide compute: /providers.html (Windows GPU owners). Windows preview 0.4.0 is available at /downloads/AgentCompute-Provider-Setup-0.4.0.exe; release metadata at /downloads/provider-0.4.0.json. This is an unsigned experimental installer; installation testing is pending and Windows may block it. Invitation-only enrollment requires a private connection file. Models are selected using GPU memory, RAM and disk checks. No paid rewards, verified cost savings or remote model pooling. Studio Send confirms the disclosed processing permission; protocol consent requirements remain unchanged.
+
+AGENT CONNECTION FIRST
+AgentCompute exposes supported task execution through the remote Streamable HTTP MCP endpoint and HTTP API. Connect an existing compatible agent using /agents.html#connect; use /docs.html for application integration. Studio is an optional browser demo, not a prerequisite. Agents must be configured in their client and follow availability, permission, quota and idempotency requirements. This service delegates supported tasks to prepared models and tools; it does not provide unrestricted GPU instances or model training.

@@ -71,3 +71,8 @@ The live landing page now has separate sections for compute users, GPU providers
 Studio renders escaped Markdown headings, emphasis, lists, tables, links and fenced code. Raw HTML is not interpreted, and generated links are limited to HTTP(S). A disclosure next to Send replaces the repeated checkbox; submission still supplies the protocol consent field. Web-provider details and image restrictions remain accessible. Server consent validation, authentication, quotas and job idempotency are unchanged.
 
 Validation: 16 focused interface and Markdown security tests passed, including duplicate submission prevention, resuming uncertain submissions, audio recovery, unavailable services, Send consent and literal user text versus formatted assistant output. The 12 deployed changed assets matched their SHA256 digests; health returned OK and installer HEAD returned 200 with 14,701,056 bytes. Desktop browser inspection confirmed the landing, both audience pages, actual metrics/chart, expanded activity details and Studio disclosure. No mobile-device certification or new inference performance claim is made. The provider was offline during these checks; this is not a new GPU end-to-end test or a Windows installation validation.
+
+
+## Agent connection as the primary journey, 30 October 2026
+
+The landing and business page now prioritize connecting an existing agent through MCP or HTTP. The shared navigation leads to the connection guide; Studio remains an optional browser demo. The visual request/result walkthrough shows agent to network to result. The provider and measured-activity sections remain. This copy change does not add GPU instances, arbitrary code or training. Eight HTML pages passed structure, anchor and primary-action checks.

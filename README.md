@@ -1,10 +1,13 @@
-# AgentCompute: GPU tools for AI agents
+# AgentCompute: compute for agents, supplied by people
 
-Delegate an objective with local tools, analyse supplied CSV data and receive files, or generate text, images and short transcripts through one hosted MCP endpoint. A **free, capacity-limited experiment**, with no guaranteed uptime or SLA.
+Connect your existing AI agent to a network of independently operated GPUs through remote MCP or HTTP. Delegate supported research, calculations, CSV analysis, text, image and audio tasks, then retrieve results in your existing workflow. Studio is an optional browser demo. A **free, capacity-limited experiment**, with no guaranteed uptime or SLA.
 
 [Use compute](https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/compute.html) | [Provide compute](https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/providers.html) | [Agent guide](https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/agents) | [Live activity](https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/activity) | [Try the Studio](https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/studio) | [Glama](https://glama.ai/mcp/connectors/io.github.Ockram4444/agentcompute)
 
-## Connect
+## Connect your agent to the network
+
+Start with the [connection guide](https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/agents.html#connect). Configure a client that supports remote Streamable HTTP MCP, or use the HTTP API from your application. Opening the website does not automatically connect an agent.
+
 
 Transport: Streamable HTTP.
 
