@@ -1,0 +1,205 @@
+{
+  "demonstration": "Owner-commissioned live test through the public MCP API, not customer traction",
+  "input_classification": "Synthetic or public nonconfidential data",
+  "requested_at_utc": "2026-11-02T09:58:10.749202+00:00",
+  "retrieved_at_utc": "2026-11-02T09:58:39.238497+00:00",
+  "request": {
+    "version": 2,
+    "objective": "Use the approved CSV group-sum tool to aggregate all 120 synthetic invoice rows in invoices by supplier, summing amount_usd. Create supplier_totals.csv with one row for each of the six suppliers and the columns supplier,total_usd. Create brief.md stating that 120 generated invoices were grouped into six supplier totals. Do not calculate any percentages or additional measures. Use tool output, not mental arithmetic. These are synthetic demonstration invoices.",
+    "documents": [
+      {
+        "id": "invoices",
+        "text": "invoice_id,supplier,amount_usd\nINV001,Atlas,214.19\nINV002,Boreal,293.38\nINV003,Cedar,372.57\nINV004,Delta,451.76\nINV005,Ember,530.95\nINV006,Fjord,610.14\nINV007,Atlas,689.33\nINV008,Boreal,768.52\nINV009,Cedar,847.71\nINV010,Delta,926.90\nINV011,Ember,1006.09\nINV012,Fjord,1085.28\nINV013,Atlas,1164.47\nINV014,Boreal,1243.66\nINV015,Cedar,1322.85\nINV016,Delta,1402.04\nINV017,Ember,1481.23\nINV018,Fjord,1560.42\nINV019,Atlas,1639.61\nINV020,Boreal,1718.80\nINV021,Cedar,1797.99\nINV022,Delta,1877.18\nINV023,Ember,1956.37\nINV024,Fjord,2035.56\nINV025,Atlas,2114.75\nINV026,Boreal,2193.94\nINV027,Cedar,2273.13\nINV028,Delta,2352.32\nINV029,Ember,2431.51\nINV030,Fjord,2510.70\nINV031,Atlas,2589.89\nINV032,Boreal,2669.08\nINV033,Cedar,2748.27\nINV034,Delta,2827.46\nINV035,Ember,2906.65\nINV036,Fjord,2985.84\nINV037,Atlas,195.03\nINV038,Boreal,274.22\nINV039,Cedar,353.41\nINV040,Delta,432.60\nINV041,Ember,511.79\nINV042,Fjord,590.98\nINV043,Atlas,670.17\nINV044,Boreal,749.36\nINV045,Cedar,828.55\nINV046,Delta,907.74\nINV047,Ember,986.93\nINV048,Fjord,1066.12\nINV049,Atlas,1145.31\nINV050,Boreal,1224.50\nINV051,Cedar,1303.69\nINV052,Delta,1382.88\nINV053,Ember,1462.07\nINV054,Fjord,1541.26\nINV055,Atlas,1620.45\nINV056,Boreal,1699.64\nINV057,Cedar,1778.83\nINV058,Delta,1858.02\nINV059,Ember,1937.21\nINV060,Fjord,2016.40\nINV061,Atlas,2095.59\nINV062,Boreal,2174.78\nINV063,Cedar,2253.97\nINV064,Delta,2333.16\nINV065,Ember,2412.35\nINV066,Fjord,2491.54\nINV067,Atlas,2570.73\nINV068,Boreal,2649.92\nINV069,Cedar,2729.11\nINV070,Delta,2808.30\nINV071,Ember,2887.49\nINV072,Fjord,2966.68\nINV073,Atlas,175.87\nINV074,Boreal,255.06\nINV075,Cedar,334.25\nINV076,Delta,413.44\nINV077,Ember,492.63\nINV078,Fjord,571.82\nINV079,Atlas,651.01\nINV080,Boreal,730.20\nINV081,Cedar,809.39\nINV082,Delta,888.58\nINV083,Ember,967.77\nINV084,Fjord,1046.96\nINV085,Atlas,1126.15\nINV086,Boreal,1205.34\nINV087,Cedar,1284.53\nINV088,Delta,1363.72\nINV089,Ember,1442.91\nINV090,Fjord,1522.10\nINV091,Atlas,1601.29\nINV092,Boreal,1680.48\nINV093,Cedar,1759.67\nINV094,Delta,1838.86\nINV095,Ember,1918.05\nINV096,Fjord,1997.24\nINV097,Atlas,2076.43\nINV098,Boreal,2155.62\nINV099,Cedar,2234.81\nINV100,Delta,2314.00\nINV101,Ember,2393.19\nINV102,Fjord,2472.38\nINV103,Atlas,2551.57\nINV104,Boreal,2630.76\nINV105,Cedar,2709.95\nINV106,Delta,2789.14\nINV107,Ember,2868.33\nINV108,Fjord,2947.52\nINV109,Atlas,156.71\nINV110,Boreal,235.90\nINV111,Cedar,315.09\nINV112,Delta,394.28\nINV113,Ember,473.47\nINV114,Fjord,552.66\nINV115,Atlas,631.85\nINV116,Boreal,711.04\nINV117,Cedar,790.23\nINV118,Delta,869.42\nINV119,Ember,948.61\nINV120,Fjord,1027.80\n"
+      }
+    ],
+    "required_artifacts": [
+      "supplier_totals.csv",
+      "brief.md"
+    ]
+  },
+  "service_catalog": {
+    "audio": {
+      "service": "Multilingual audio transcription",
+      "languages": "auto-detect multilingual",
+      "outputs": [
+        "text",
+        "json",
+        "srt",
+        "vtt"
+      ],
+      "client": "/downloads/agentcompute.py",
+      "multilingual_ready": true,
+      "available": true,
+      "worker_state": "ready",
+      "profile": "whisper-small-multi-cuda-fp16-v1",
+      "price_usd": 0,
+      "trial_jobs_per_session": 3,
+      "trial_access": "/v1/trial",
+      "login_required": false,
+      "global_trial_sessions_per_24h": 100,
+      "max_audio_seconds": 300,
+      "format": "mono PCM16 WAV, 16000 Hz",
+      "max_bytes": 10485760,
+      "max_active_jobs": 5,
+      "global_daily_audio_seconds": 3600,
+      "global_daily_attempts": 10,
+      "max_attempt_seconds": 180,
+      "accuracy_verified": false,
+      "docs": "/docs.html",
+      "registration": "/beta.html",
+      "mcp_url": "/v1/mcp"
+    },
+    "services": {
+      "agent_web": true,
+      "agent_tools": true,
+      "agent": true,
+      "chat": true,
+      "image": false
+    },
+    "models": {
+      "chat": {
+        "id": "unsloth/Qwen3.5-9B-GGUF",
+        "revision": "3885219b6810b007914f3a7950a8d1b469d598a5"
+      }
+    },
+    "capacity_remaining": null,
+    "max_active": 3,
+    "session_jobs": 10,
+    "studio_jobs_per_24h": 72,
+    "active_jobs_per_session": 1,
+    "reported_client_jobs_per_24h": 10,
+    "output_retention_hours": 24,
+    "hardware_attested": false,
+    "real_money": false,
+    "login_required": false,
+    "poll_after_seconds": 3,
+    "guide_url": "https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/agents.html"
+  },
+  "job": {
+    "timings": {
+      "queue_seconds": 1.643,
+      "server_total_seconds": 17.999,
+      "model_load_seconds": 5.141599299997324,
+      "inference_seconds": 6.232177500001853
+    },
+    "id": "studio_1e3e6a15ba9b400cadc2965e168a57da",
+    "kind": "chat",
+    "status": "succeeded",
+    "created": 1793613496353,
+    "completed": 1793613514352,
+    "error": null,
+    "result": {
+      "agent_result": {
+        "agent_metrics": {
+          "elapsed_seconds": 6.219000000011874,
+          "model_calls": 4,
+          "output_tokens": 408,
+          "tool_calls": 3
+        },
+        "artifacts": [
+          {
+            "content": "supplier,total_usd\nAtlas,25680.40\nBoreal,27264.20\nCedar,28848.00\nDelta,30431.80\nEmber,32015.60\nFjord,33599.40",
+            "mime_type": "text/csv",
+            "name": "supplier_totals.csv"
+          },
+          {
+            "content": "120 generated invoices were grouped into six supplier totals.\n",
+            "mime_type": "text/markdown",
+            "name": "brief.md"
+          }
+        ],
+        "citations": [
+          {
+            "document_id": "tool_1",
+            "quote": "{\"group\":\"Atlas\",\"sum\":\"25680.40\"},{\"group\":\"Boreal\",\"sum\":\"27264.20\"},{\"group\":\"Cedar\",\"sum\":\"28848.00\"},{\"group\":\"Delta\",\"sum\":\"30431.80\"},{\"group\":\"Ember\",\"sum\":\"32015.60\"},{\"group\":\"Fjord\",\"sum\":\"33599.40\"}"
+          }
+        ],
+        "limitations": [],
+        "records": [
+          {
+            "supplier": "Atlas",
+            "total_usd": 25680.4
+          },
+          {
+            "supplier": "Boreal",
+            "total_usd": 27264.2
+          },
+          {
+            "supplier": "Cedar",
+            "total_usd": 28848
+          },
+          {
+            "supplier": "Delta",
+            "total_usd": 30431.8
+          },
+          {
+            "supplier": "Ember",
+            "total_usd": 32015.6
+          },
+          {
+            "supplier": "Fjord",
+            "total_usd": 33599.4
+          }
+        ],
+        "tool_outputs": [
+          {
+            "id": "tool_1",
+            "text": "{\"group_by\":\"supplier\",\"column\":\"amount_usd\",\"rows\":[{\"group\":\"Atlas\",\"sum\":\"25680.40\"},{\"group\":\"Boreal\",\"sum\":\"27264.20\"},{\"group\":\"Cedar\",\"sum\":\"28848.00\"},{\"group\":\"Delta\",\"sum\":\"30431.80\"},{\"group\":\"Ember\",\"sum\":\"32015.60\"},{\"group\":\"Fjord\",\"sum\":\"33599.40\"}]}",
+            "tool": "csv"
+          }
+        ],
+        "trace": [
+          {
+            "arguments": {
+              "column": "amount_usd",
+              "document_id": "invoices",
+              "group_by": "supplier",
+              "operation": "group_sum",
+              "value": ""
+            },
+            "tool": "csv"
+          },
+          {
+            "arguments": {
+              "content": "supplier,total_usd\nAtlas,25680.40\nBoreal,27264.20\nCedar,28848.00\nDelta,30431.80\nEmber,32015.60\nFjord,33599.40",
+              "name": "supplier_totals.csv"
+            },
+            "tool": "write_file"
+          },
+          {
+            "arguments": {
+              "content": "120 generated invoices were grouped into six supplier totals.\n",
+              "name": "brief.md"
+            },
+            "tool": "write_file"
+          }
+        ],
+        "validation": {
+          "factual_accuracy_verified": false,
+          "quotes_match_source_text": true,
+          "structure_valid": true,
+          "tool_outputs_independently_verified": false
+        }
+      },
+      "quality_verified": false,
+      "runtime": {
+        "compute_type": "Q4_K_M",
+        "context_tokens": 8192,
+        "device": "cuda",
+        "engine": "Ollama 0.40.8 CUDA",
+        "gpu": "NVIDIA GeForce RTX 5080",
+        "inference_seconds": 6.232177500001853,
+        "model": "unsloth/Qwen3.5-9B-GGUF",
+        "model_load_seconds": 5.141599299997324,
+        "model_revision": "3885219b6810b007914f3a7950a8d1b469d598a5",
+        "output_tokens": 408
+      },
+      "text": "Created supplier_totals.csv with aggregated amounts by supplier and brief.md confirming 120 invoices were grouped into six supplier totals."
+    },
+    "image_available": false,
+    "hardware_attested": false,
+    "job_id": "studio_1e3e6a15ba9b400cadc2965e168a57da",
+    "poll_after_seconds": null,
+    "real_money": false
+  }
+}

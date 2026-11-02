@@ -1,0 +1,19 @@
+{
+  "created_utc": "2026-11-02",
+  "sha256": {
+    ".gitignore": "01dc7b9a03881bbad0d299fa449626c9b7e62f5d2d38cb32c4baf0bd4eb05e07",
+    "README.md": "f69505ee1338124c97586f0f63dcd581ac31ebee254a559319895642d3f08840",
+    "inputs/invoices.csv": "538acebd43c5c55d264276a4d477fe6787c38831e23f7133ca6dd694a53b3974",
+    "inputs/research-01.json": "e22abd757024770988b3799aa7ad6a978359cd6234403c1af47a879f487a5976",
+    "inputs/spend-01.json": "8650175c314750f421f32f8393a9f909d314dfea9e67583223a11d64efcfd66f",
+    "inputs/spend-02.json": "5ac4f575be159bce1143c9f3d411587539f55655f1b6e414ee00eb830b691bfa",
+    "outputs/brief.md": "07cf5b5605f5748f636b04166d61863f62210026311493b5d6d19c6b7b3d1bb5",
+    "outputs/research-reviewed.md": "2fd67380d6850d40e44650b042b49c8a62270633866b368e4a23e5725cd07ff2",
+    "outputs/supplier_totals.csv": "41c4371eb77d61c3954aafb7d18b87adfae632ec67699aa82d8ae0dfcd89c7fa",
+    "run_demo.py": "aa9494c71c967247488308a2cdfb181c88f9488eb013515d5fa0984e66b8470f",
+    "runs/research-01.json": "105265c25743978e304aee08a6287d3c028fdc338639d8f3983ef6e83b081ca2",
+    "runs/spend-01.json": "bf2c4150b056895af5893ba595a5344758c6d2bbfeb3d1bcbdd0d1f8d2769e0a",
+    "runs/spend-02.json": "581eac4fabcb1403a4f8cdfce932eb9c58db2bcf4b84a1c736c605ab405bb9f1",
+    "verify.py": "138d1ab4545d43816b8ed6456d4c9d4bb815311bc6bf02e9a519933447625067"
+  }
+}

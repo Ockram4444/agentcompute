@@ -1,0 +1,204 @@
+{
+  "demonstration": "Owner-commissioned live test through the public MCP API, not customer traction",
+  "input_classification": "Synthetic or public nonconfidential data",
+  "requested_at_utc": "2026-11-02T09:49:01.556166+00:00",
+  "retrieved_at_utc": "2026-11-02T09:50:12.172602+00:00",
+  "request": {
+    "version": 3,
+    "objective": "Read these two official public pages: https://salad.com/pricing/ and https://www.runpod.io/pricing . Create gpu-pricing.md comparing the published USD per GPU-hour prices for RTX 4090 and RTX 5090. For Salad show the High and Lowest priority prices separately. For Runpod show the dedicated Pod price, not Serverless. Include source URLs, retrieval date, and a brief exact supporting quote or table excerpt from each page. If a page cannot be read or a requested value cannot be verified, state that explicitly rather than inventing it. Do not search for other pages. Keep the report compact.",
+    "required_artifacts": [
+      "gpu-pricing.md"
+    ]
+  },
+  "service_catalog": {
+    "audio": {
+      "service": "Multilingual audio transcription",
+      "languages": "auto-detect multilingual",
+      "outputs": [
+        "text",
+        "json",
+        "srt",
+        "vtt"
+      ],
+      "client": "/downloads/agentcompute.py",
+      "multilingual_ready": true,
+      "available": true,
+      "worker_state": "ready",
+      "profile": "whisper-small-multi-cuda-fp16-v1",
+      "price_usd": 0,
+      "trial_jobs_per_session": 3,
+      "trial_access": "/v1/trial",
+      "login_required": false,
+      "global_trial_sessions_per_24h": 100,
+      "max_audio_seconds": 300,
+      "format": "mono PCM16 WAV, 16000 Hz",
+      "max_bytes": 10485760,
+      "max_active_jobs": 5,
+      "global_daily_audio_seconds": 3600,
+      "global_daily_attempts": 10,
+      "max_attempt_seconds": 180,
+      "accuracy_verified": false,
+      "docs": "/docs.html",
+      "registration": "/beta.html",
+      "mcp_url": "/v1/mcp"
+    },
+    "services": {
+      "agent_web": true,
+      "agent_tools": true,
+      "agent": true,
+      "chat": true,
+      "image": false
+    },
+    "models": {
+      "chat": {
+        "id": "unsloth/Qwen3.5-9B-GGUF",
+        "revision": "3885219b6810b007914f3a7950a8d1b469d598a5"
+      }
+    },
+    "capacity_remaining": null,
+    "max_active": 3,
+    "session_jobs": 10,
+    "studio_jobs_per_24h": 72,
+    "active_jobs_per_session": 1,
+    "reported_client_jobs_per_24h": 10,
+    "output_retention_hours": 24,
+    "hardware_attested": false,
+    "real_money": false,
+    "login_required": false,
+    "poll_after_seconds": 3,
+    "guide_url": "https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/agents.html"
+  },
+  "job": {
+    "timings": {
+      "queue_seconds": 6.191,
+      "server_total_seconds": 64.614,
+      "model_load_seconds": 5.292306999996072,
+      "inference_seconds": 56.851817299990216
+    },
+    "id": "studio_04d0cfc2af5a43169342accd4e2b47a3",
+    "kind": "chat",
+    "status": "succeeded",
+    "created": 1793612946648,
+    "completed": 1793613011262,
+    "error": null,
+    "result": {
+      "agent_result": {
+        "agent_metrics": {
+          "elapsed_seconds": 56.828999999997905,
+          "model_calls": 7,
+          "output_tokens": 5426,
+          "tool_calls": 6
+        },
+        "artifacts": [
+          {
+            "name": "gpu-pricing.md",
+            "original_content_sha256": "c5144b186cce5b7ece371cb9f9f71a6896d0325942f2b9c9b3a79a74bb665e2c",
+            "original_utf8_bytes": 2079,
+            "published_reviewed_extract": "outputs/research-reviewed.md",
+            "review": "Six requested price values checked against official source pages. Original prose included an unsupported service comparison and excerpts with ellipses; those are not included in the reviewed extract."
+          }
+        ],
+        "citations": [
+          {
+            "document_id": "tool_1",
+            "quote_sha256": "3549f9d90d346291547fcde926abd3a7c2ca855cfa3303464423a354d1620161",
+            "quote_omitted": "Third-party source excerpt omitted."
+          },
+          {
+            "document_id": "tool_2",
+            "quote_sha256": "cc74e71d3aa86f37e78cd2af5dee1368775bd6ef1c0354f3cb4e1e202f95f692",
+            "quote_omitted": "Third-party source excerpt omitted."
+          }
+        ],
+        "limitations": [],
+        "records": [],
+        "tool_outputs": [
+          {
+            "id": "tool_1",
+            "tool": "read_web",
+            "source": {
+              "url": "https://salad.com/pricing/",
+              "retrieved_at": "2026-11-02T09:49:18.721572+00:00",
+              "source_text_sha256": "29f3bb80ca1516c3ac3f6d86fcb1b8225d05c7992c5c231fbad1e5988fae2b29",
+              "text_omitted": "Third-party webpage text is not redistributed."
+            }
+          },
+          {
+            "id": "tool_2",
+            "tool": "read_web",
+            "source": {
+              "url": "https://www.runpod.io/pricing",
+              "retrieved_at": "2026-11-02T09:49:28.197177+00:00",
+              "source_text_sha256": "e36b4ba3e1b19bbff5d73409cb588a9a906d3b586c45b7e930a3b1b2b5e0cbcc",
+              "text_omitted": "Third-party webpage text is not redistributed."
+            }
+          }
+        ],
+        "trace": [
+          {
+            "arguments": {
+              "url": "https://salad.com/pricing/"
+            },
+            "tool": "read_web"
+          },
+          {
+            "arguments": {
+              "url": "https://www.runpod.io/pricing"
+            },
+            "tool": "read_web"
+          },
+          {
+            "tool": "invalid",
+            "error_sha256": "83053d6248d0e2e8f5056a3143807443e88a20277d86774f0f8a2f6449635a9c",
+            "error_summary": "Required artifact had not been written."
+          },
+          {
+            "arguments": {
+              "name": "gpu-pricing.md",
+              "content_sha256": "c5144b186cce5b7ece371cb9f9f71a6896d0325942f2b9c9b3a79a74bb665e2c",
+              "content_utf8_bytes": 2079
+            },
+            "tool": "write_file"
+          },
+          {
+            "tool": "invalid",
+            "error_sha256": "4b50c3b00bf9cffe55d635da11a0e204bb6e4d7e447056f67822a7e79c9407a5",
+            "error_summary": "Citation quote required correction to match source text."
+          },
+          {
+            "tool": "invalid",
+            "error_sha256": "5393b7564ec8a8a602cfd76dd675873920cc839ade49f5f67e79580fdf304a1e",
+            "error_summary": "Citation quote required correction to match source text."
+          }
+        ],
+        "validation": {
+          "factual_accuracy_verified": false,
+          "quotes_match_source_text": true,
+          "structure_valid": true,
+          "tool_outputs_independently_verified": false
+        }
+      },
+      "quality_verified": false,
+      "runtime": {
+        "compute_type": "Q4_K_M",
+        "context_tokens": 8192,
+        "device": "cuda",
+        "engine": "Ollama 0.40.8 CUDA",
+        "gpu": "NVIDIA GeForce RTX 5080",
+        "inference_seconds": 56.851817299990216,
+        "model": "unsloth/Qwen3.5-9B-GGUF",
+        "model_load_seconds": 5.292306999996072,
+        "model_revision": "3885219b6810b007914f3a7950a8d1b469d598a5",
+        "output_tokens": 5426
+      },
+      "original_answer_sha256": "24ec85742ee16f98bbd0e4cdfedbc6187121d05e24147e59138b4b17341f37a2",
+      "answer_publication": "See separately labelled reviewed extract in outputs/research-reviewed.md."
+    },
+    "image_available": false,
+    "hardware_attested": false,
+    "job_id": "studio_04d0cfc2af5a43169342accd4e2b47a3",
+    "poll_after_seconds": null,
+    "real_money": false
+  },
+  "publication_transform": "Webpage text and source quotations omitted; original output identified by hash, with a separately labelled reviewed extract. Operational metadata and retry trace retained."
+}

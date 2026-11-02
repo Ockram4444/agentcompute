@@ -1,0 +1,99 @@
+{
+  "demonstration": "Owner-commissioned live test through the public MCP API, not customer traction",
+  "input_classification": "Synthetic or public nonconfidential data",
+  "requested_at_utc": "2026-11-02T09:46:24.287035+00:00",
+  "retrieved_at_utc": "2026-11-02T09:47:07.123103+00:00",
+  "request": {
+    "version": 2,
+    "objective": "Analyze the 120 synthetic invoices in invoices. Use the approved CSV and decimal tools. Produce supplier_totals.csv with exactly the columns supplier,total_usd, one row per supplier, sorted by total_usd descending. Produce summary.json with invoice_count, supplier_count, total_usd, largest_supplier, largest_supplier_usd, top_three_share_percent (rounded to 2 decimals). Produce brief.md with a concise spend concentration finding. Every number must come from tool results; do not estimate. This is generated demonstration data, not real invoices. Keep the final answer brief.",
+    "documents": [
+      {
+        "id": "invoices",
+        "text": "invoice_id,supplier,amount_usd\nINV001,Atlas,214.19\nINV002,Boreal,293.38\nINV003,Cedar,372.57\nINV004,Delta,451.76\nINV005,Ember,530.95\nINV006,Fjord,610.14\nINV007,Atlas,689.33\nINV008,Boreal,768.52\nINV009,Cedar,847.71\nINV010,Delta,926.90\nINV011,Ember,1006.09\nINV012,Fjord,1085.28\nINV013,Atlas,1164.47\nINV014,Boreal,1243.66\nINV015,Cedar,1322.85\nINV016,Delta,1402.04\nINV017,Ember,1481.23\nINV018,Fjord,1560.42\nINV019,Atlas,1639.61\nINV020,Boreal,1718.80\nINV021,Cedar,1797.99\nINV022,Delta,1877.18\nINV023,Ember,1956.37\nINV024,Fjord,2035.56\nINV025,Atlas,2114.75\nINV026,Boreal,2193.94\nINV027,Cedar,2273.13\nINV028,Delta,2352.32\nINV029,Ember,2431.51\nINV030,Fjord,2510.70\nINV031,Atlas,2589.89\nINV032,Boreal,2669.08\nINV033,Cedar,2748.27\nINV034,Delta,2827.46\nINV035,Ember,2906.65\nINV036,Fjord,2985.84\nINV037,Atlas,195.03\nINV038,Boreal,274.22\nINV039,Cedar,353.41\nINV040,Delta,432.60\nINV041,Ember,511.79\nINV042,Fjord,590.98\nINV043,Atlas,670.17\nINV044,Boreal,749.36\nINV045,Cedar,828.55\nINV046,Delta,907.74\nINV047,Ember,986.93\nINV048,Fjord,1066.12\nINV049,Atlas,1145.31\nINV050,Boreal,1224.50\nINV051,Cedar,1303.69\nINV052,Delta,1382.88\nINV053,Ember,1462.07\nINV054,Fjord,1541.26\nINV055,Atlas,1620.45\nINV056,Boreal,1699.64\nINV057,Cedar,1778.83\nINV058,Delta,1858.02\nINV059,Ember,1937.21\nINV060,Fjord,2016.40\nINV061,Atlas,2095.59\nINV062,Boreal,2174.78\nINV063,Cedar,2253.97\nINV064,Delta,2333.16\nINV065,Ember,2412.35\nINV066,Fjord,2491.54\nINV067,Atlas,2570.73\nINV068,Boreal,2649.92\nINV069,Cedar,2729.11\nINV070,Delta,2808.30\nINV071,Ember,2887.49\nINV072,Fjord,2966.68\nINV073,Atlas,175.87\nINV074,Boreal,255.06\nINV075,Cedar,334.25\nINV076,Delta,413.44\nINV077,Ember,492.63\nINV078,Fjord,571.82\nINV079,Atlas,651.01\nINV080,Boreal,730.20\nINV081,Cedar,809.39\nINV082,Delta,888.58\nINV083,Ember,967.77\nINV084,Fjord,1046.96\nINV085,Atlas,1126.15\nINV086,Boreal,1205.34\nINV087,Cedar,1284.53\nINV088,Delta,1363.72\nINV089,Ember,1442.91\nINV090,Fjord,1522.10\nINV091,Atlas,1601.29\nINV092,Boreal,1680.48\nINV093,Cedar,1759.67\nINV094,Delta,1838.86\nINV095,Ember,1918.05\nINV096,Fjord,1997.24\nINV097,Atlas,2076.43\nINV098,Boreal,2155.62\nINV099,Cedar,2234.81\nINV100,Delta,2314.00\nINV101,Ember,2393.19\nINV102,Fjord,2472.38\nINV103,Atlas,2551.57\nINV104,Boreal,2630.76\nINV105,Cedar,2709.95\nINV106,Delta,2789.14\nINV107,Ember,2868.33\nINV108,Fjord,2947.52\nINV109,Atlas,156.71\nINV110,Boreal,235.90\nINV111,Cedar,315.09\nINV112,Delta,394.28\nINV113,Ember,473.47\nINV114,Fjord,552.66\nINV115,Atlas,631.85\nINV116,Boreal,711.04\nINV117,Cedar,790.23\nINV118,Delta,869.42\nINV119,Ember,948.61\nINV120,Fjord,1027.80\n"
+      }
+    ],
+    "required_artifacts": [
+      "supplier_totals.csv",
+      "summary.json",
+      "brief.md"
+    ]
+  },
+  "service_catalog": {
+    "audio": {
+      "service": "Multilingual audio transcription",
+      "languages": "auto-detect multilingual",
+      "outputs": [
+        "text",
+        "json",
+        "srt",
+        "vtt"
+      ],
+      "client": "/downloads/agentcompute.py",
+      "multilingual_ready": true,
+      "available": true,
+      "worker_state": "ready",
+      "profile": "whisper-small-multi-cuda-fp16-v1",
+      "price_usd": 0,
+      "trial_jobs_per_session": 3,
+      "trial_access": "/v1/trial",
+      "login_required": false,
+      "global_trial_sessions_per_24h": 100,
+      "max_audio_seconds": 300,
+      "format": "mono PCM16 WAV, 16000 Hz",
+      "max_bytes": 10485760,
+      "max_active_jobs": 5,
+      "global_daily_audio_seconds": 3600,
+      "global_daily_attempts": 10,
+      "max_attempt_seconds": 180,
+      "accuracy_verified": false,
+      "docs": "/docs.html",
+      "registration": "/beta.html",
+      "mcp_url": "/v1/mcp"
+    },
+    "services": {
+      "agent_web": true,
+      "agent_tools": true,
+      "agent": true,
+      "chat": true,
+      "image": false
+    },
+    "models": {
+      "chat": {
+        "id": "unsloth/Qwen3.5-9B-GGUF",
+        "revision": "3885219b6810b007914f3a7950a8d1b469d598a5"
+      }
+    },
+    "capacity_remaining": null,
+    "max_active": 3,
+    "session_jobs": 10,
+    "studio_jobs_per_24h": 72,
+    "active_jobs_per_session": 1,
+    "reported_client_jobs_per_24h": 10,
+    "output_retention_hours": 24,
+    "hardware_attested": false,
+    "real_money": false,
+    "login_required": false,
+    "poll_after_seconds": 3,
+    "guide_url": "https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/agents.html"
+  },
+  "job": {
+    "timings": {
+      "queue_seconds": 6.67,
+      "server_total_seconds": 29.906,
+      "model_load_seconds": null,
+      "inference_seconds": null
+    },
+    "id": "studio_dc2c73bd0ee74b81b222da7d8ac553dc",
+    "kind": "chat",
+    "status": "failed",
+    "created": 1793612789331,
+    "completed": 1793612819237,
+    "error": "Worker could not complete this task. Check the provider report.",
+    "result": null,
+    "image_available": false,
+    "hardware_attested": false,
+    "job_id": "studio_dc2c73bd0ee74b81b222da7d8ac553dc",
+    "poll_after_seconds": null,
+    "real_money": false
+  }
+}

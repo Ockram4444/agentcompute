@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "objective": "Read these two official public pages: https://salad.com/pricing/ and https://www.runpod.io/pricing . Create gpu-pricing.md comparing the published USD per GPU-hour prices for RTX 4090 and RTX 5090. For Salad show the High and Lowest priority prices separately. For Runpod show the dedicated Pod price, not Serverless. Include source URLs, retrieval date, and a brief exact supporting quote or table excerpt from each page. If a page cannot be read or a requested value cannot be verified, state that explicitly rather than inventing it. Do not search for other pages. Keep the report compact.",
+  "required_artifacts": [
+    "gpu-pricing.md"
+  ]
+}
