@@ -124,7 +124,7 @@ Call `submit_catalog_job` with `extraction.version=1` and one to six public or s
 
 ## Shared limits
 
-Authenticated accounts have no small daily request allowance. The current Studio service permits three active root requests per account and twelve shared task units; workflow parts reserve capacity. Anonymous demo limits remain separate. Input limits, execution deadlines, retention and antiabuse protections still apply. Read live service status and the [API instructions](https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/docs) before submitting. Audio availability and limits are reported separately by `get_compute_status`.
+Authenticated Studio/agent accounts have no small daily request allowance. The current Studio service permits three active root requests per account and twelve shared task units; workflow parts reserve capacity. Anonymous demo limits remain separate. Input limits, execution deadlines, retention and antiabuse protections still apply. Read live service status and the [API instructions](https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/docs) before submitting. Audio availability and limits are reported separately by `get_compute_status`. As checked on 11 November 2026, that audio response still includes legacy trial/login and daily-limit fields. Reconciling those fields with the account-based audio flow is pending; do not infer unrestricted audio capacity from the Studio settings.
 
 Capacity can be unavailable while the operator's PC is offline or busy. Model loading adds latency. No paid plans or guaranteed response times. On a quota error, stop and retry later; do not manufacture new identities.
 
