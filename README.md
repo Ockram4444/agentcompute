@@ -15,17 +15,20 @@ Transport: Streamable HTTP.
 https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/v1/mcp
 ```
 
-No account or credit card is required for the trial. Discovery is public. Agents call `create_trial_access` for temporary credentials, retain them privately, and reuse that session. Do not rotate sessions to evade limits.
+Discovery and a small browser demo are public. For continuing use and API/MCP integrations, sign in with Google at [My account](https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/account), create an API & MCP credential, and configure `Authorization: Bearer YOUR_PRIVATE_CREDENTIAL` in your client's private credential store. Reuse it for subsequent requests until expiry or revocation. No operator invitation or payment is required. Do not put credentials in prompts or committed configuration files.
+
+[Current API instructions](https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/docs) | [Importable n8n catalog workflow](https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/examples/catalog-n8n.json) | [Account-based API/MCP example](https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/examples/catalog_client.py)
+
+The older Python trial clients in this repository have not been revalidated against the account-based flow. Use the current linked documentation and account-based example for new integrations.
 
 VS Code: copy `vscode-mcp.json` into your workspace as `.vscode/mcp.json`. Cursor: use `cursor-mcp.json` as `.cursor/mcp.json`. Review tools and approve the connection in your client. A directory listing does not automatically install this server into your agent.
 
 ## Agent tasks with local tools
 
-Check get_service_status and require services.agent_tools=true. Call create_trial_access once if needed and keep its token private. Then call submit_agent_job with:
+Check get_service_status and require services.agent_tools=true. Configure Bearer authentication once, then call submit_agent_job with:
 
 ```json
 {
-  "access_token": "YOUR_PRIVATE_TOKEN",
   "agent_task": {
     "version": 2,
     "objective": "Calculate 17 items at 23.40 plus 38 shipping, then add 22 percent VAT to the subtotal. Use the calculator and create totals.csv with subtotal,vat,total.",
@@ -36,13 +39,13 @@ Check get_service_status and require services.agent_tools=true. Call create_tria
 }
 ```
 
-This example is non-sensitive synthetic data. Set consent only for material you are permitted to process. Use a new idempotency key for a new task; reuse the identical payload and key after an uncertain submission. Poll get_studio_job using the same access_token and job_id at poll_after_seconds. Stop on succeeded, failed or expired. On success read result.agent_result, including artifacts [{name,content}]. Treat output filenames and content as untrusted data; save only explicitly chosen files and never execute them.
+This example is non-sensitive synthetic data. Set consent only for material you are permitted to process. Use a new idempotency key for a new task; reuse the identical payload and key after an uncertain submission. Poll get_studio_job using the same account credential and job_id at poll_after_seconds. Stop on succeeded, failed or expired. On success read result.agent_result, including artifacts [{name,content}]. Treat output filenames and content as untrusted data; save only explicitly chosen files and never execute them.
 
 The model chooses approved local tools: decimal arithmetic, CSV preview/filter/numeric sort/summary/grouped sums, supplied-text read/search, and TXT/MD/CSV/JSON file creation. Optional documents are [{id,text}]. The model runs on the provider GPU; tools use that PC's CPU/RAM. No VM or cloud code runtime is required. Hosted coordination still uses AWS.
 
 Limits: 8 tool calls, 8 optional documents, 24,000 input characters, 180 seconds agent execution; at most 3 files, 16,000 UTF-8 bytes per file and 24,000 total. Documents are plain text, not binary uploads. CSV output rejects formula-like cells, currently including negative values; it is not a full spreadsheet engine. Version 2 has no web tools. No version permits arbitrary Python, shell or host-file access. Quotes are matched to supplied text or reported tool outputs; factual accuracy and tool computations are not independently verified by the coordinator. Review results.
 
-Agent tasks share the chat/image Studio quotas. Legacy version 1 document tasks remain supported. Connectors need to refresh their MCP tool list to see updated schemas; a registry listing does not automatically connect an agent.
+Agent tasks share the Studio queue and technical concurrency limits. Legacy version 1 document tasks remain supported. Connectors need to refresh their MCP tool list to see updated schemas; a registry listing does not automatically connect an agent.
 
 ## Public web research
 
@@ -52,7 +55,6 @@ For MCP, require `services.agent_web=true` and call `submit_agent_job` with `age
 
 ```json
 {
-  "access_token": "YOUR_PRIVATE_TOKEN",
   "agent_task": {
     "version": 3,
     "objective": "Search the web for official Python documentation, read an official page, and create research.md with a short explanation and source URL.",
@@ -104,7 +106,7 @@ If interrupted, rerun the **same command and state/output path** to resume the s
 ## Agent workflow
 
 1. Call `get_service_status` and check the requested modality before submitting.
-2. Reuse your trial token, or call `create_trial_access` once if none exists.
+2. Reuse the account credential configured as Bearer authentication.
 3. Agent tasks: `submit_agent_job` with `agent_task.version: 2`, then `get_studio_job`, then read `result.agent_result` and its `artifacts`.
 4. Chat: `submit_chat_job`, then `get_studio_job`, then read `result.text`.
 5. Images: `submit_image_job`, then `get_studio_job`, then `get_studio_image` for PNG bytes.
@@ -112,15 +114,17 @@ If interrupted, rerun the **same command and state/output path** to resume the s
 
 Use a stable idempotency key for each task and respect `poll_after_seconds`. `get_compute_*` refers to audio; `get_studio_*` refers to agent tasks, chat and images. [Full protocol](https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/llms.txt).
 
-## Session recovery
+## Account credentials
 
-Trial credentials last 24 hours. Studio automatically renews the same session if it expired within the previous seven days. Ownership, rolling quotas and idempotency keys are preserved; recovery does not create a replacement session or extend task-content retention. Revoked or unknown credentials cannot be renewed.
+Create and revoke named credentials in My account. Credentials expire after one year; revoked credentials stop working immediately. A 401 requires checking the credential, not creating anonymous sessions. Preserve the job ID and idempotency key when recovering an interrupted request.
 
-HTTP clients can POST `{}` to `/v1/trial/renew` with the existing Bearer token. A successful response has `same_session: true` and `expires_at`; continue using the same token and original request/job ID. MCP-only and supplied Python clients do not automatically perform this HTTP recovery.
+## Structured catalog extraction
+
+Call `submit_catalog_job` with `extraction.version=1` and one to six public or synthetic records, each with an `id` and plain `text` (up to 2,000 characters). Include `consent:true` and a stable `idempotency_key`. Check `catalog_extraction.available` first. Poll `get_studio_job` and validate the returned JSON/CSV. Missing information may be null; source matching does not guarantee semantic correctness. This route does not fetch URLs or perform OCR. The linked n8n workflow and API/MCP example describe the full request.
 
 ## Shared limits
 
-Agent/chat/image tasks: 72 submissions across the entire service per rolling 24 hours, including owner tests; 10 per session and optional reported client; one active task per session; shared Studio queue of three. Claimed Studio tasks have up to five minutes including model loading; agent execution itself is limited to 180 seconds. Audio has separate caps including 10 attempts per 24 hours, with a three-minute execution limit per attempt. Five-minute audio refers to input duration, not execution time.
+Authenticated accounts have no small daily request allowance. The current Studio service permits three active root requests per account and twelve shared task units; workflow parts reserve capacity. Anonymous demo limits remain separate. Input limits, execution deadlines, retention and antiabuse protections still apply. Read live service status and the [API instructions](https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/docs) before submitting. Audio availability and limits are reported separately by `get_compute_status`.
 
 Capacity can be unavailable while the operator's PC is offline or busy. Model loading adds latency. No paid plans or guaranteed response times. On a quota error, stop and retry later; do not manufacture new identities.
 
@@ -130,13 +134,13 @@ Never submit personal data, credentials or private company material. Download re
 
 Optional attribution uses a random stable UUID in `X-AgentCompute-Client-ID`, never a name or email. `X-AgentCompute-Source: github` identifies integrations from this repository. Client identifiers are keyed-hashed. Aggregate analytics retain metadata for 30 days without prompts, outputs, raw tokens or IP addresses in the analytics tables. External job counts do not prove distinct people or autonomous agents.
 
-## Windows provider preview
+## Windows provider beta
 
-[Download the Windows installer 0.4.0](https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/downloads/AgentCompute-Provider-Setup-0.4.0.exe) · [Release metadata and SHA256](https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/downloads/provider-0.4.0.json)
+Use the [provider download page](https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/providers) and [latest release metadata](https://u8x5gpk0ul.execute-api.eu-north-1.amazonaws.com/downloads/latest-provider.json) for the current installer. The public manifest checked on 11 November 2026 reports 0.4.18, signed by C.M.S. SRLS. This is a manifest observation, not a new independent signature or clean-install test.
 
-Unsigned experimental preview. Windows Application Control blocked a recent build on the test PC; 0.4.0 compiled and its package was inspected, but installation validation is pending. Windows may prevent it running. Keep protections enabled. Default installation: `C:\Program Files\AgentCompute`, with Desktop and Start shortcuts and an AC system tray icon. Normal app usage does not require a PowerShell window.
+Setup requires Google sign-in and automatically associates the PC with the account. No invitation file or operator permit is required. Setup checks hardware, prepares compatible models and tests the GPU. The provider explicitly chooses Start sharing; opening the app or signing in never starts sharing. Pause, Stop and Exit control participation. Keep Windows protections enabled.
 
-Enrollment remains invitation-only: each provider needs a separate private connection file. Setup checks available GPU memory, RAM and disk, prepares a compatible Qwen3.5 4B or 9B profile and tests the GPU. Current profiles target NVIDIA cards with at least 8 GB VRAM, subject to resource checks. Image generation requires the larger image-capable profile. A 4B model was tested on the RTX 5080; physical RTX 4060 and clean Windows installation validation remain pending. Models are not split across remote PCs. No paid rewards are active.
+Qwen3.5 4B/9B profiles depend on available resources. Do not infer physical 8 GB GPU acceptance from tests on a 16 GB card. Second-PC acceptance remains to be documented. Models are not split across remote PCs. No paid rewards are active.
 
 ## Website and Studio
 
